@@ -1,11 +1,19 @@
 import dbConnect from "@/lib/dbConnect";
 import UserModel from "@/model/User";
+import { verifySchema } from "@/schemas/verifySchema";
 
 
 export async function POST(request:Request) {
     await dbConnect()
     try {
         const {username,code} =await request.json()
+        const {success}=verifySchema.safeParse({code})
+        if(!success){
+            return Response.json({
+                success:false,
+                message:"Invalid input"
+            }, {status:400})
+        }
         const decodedUsername=decodeURIComponent(username)
         // console.log(decodedUsername)
 
