@@ -7,6 +7,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { MessageCircle, Send, Sparkles, User, MessageSquare, Wand2, RefreshCw } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 import { useSearchParams } from "next/navigation";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
@@ -101,7 +102,7 @@ function SendMessageInner() {
     <div className="min-h-screen bg-white text-black">
       <nav className="flex justify-between items-center p-4 lg:px-8 border-b">
         <Link href="/" className="flex items-center space-x-2">
-          <MessageCircle className="h-6 w-6 text-black" />
+          <Image src="/home/mystrymsgs.png" alt="MystryMsg" width={24} height={24} />
           <span className="text-xl font-bold text-black">MystryMsg</span>
         </Link>
         

@@ -19,6 +19,7 @@ import {
   Check
 } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Documentation() {
   const [activeSection, setActiveSection] = useState<string | null>(null);
@@ -158,7 +159,7 @@ export default function Documentation() {
                 <span className="text-sm">Back to Home</span>
               </Link>
               <div className="flex items-center space-x-2">
-                <MessageCircle className="h-6 w-6 text-black" />
+                <Image src="/home/mystrymsgs.png" alt="MystryMsg" width={24} height={24} />
                 <span className="text-xl font-bold text-black">MystryMsg</span>
               </div>
             </div>

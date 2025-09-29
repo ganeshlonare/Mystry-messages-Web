@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { MessageCircle, LogOut } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function SignOut() {
   const { data: session, status } = useSession();
@@ -60,7 +61,7 @@ export default function SignOut() {
       {/* Navigation */}
       <nav className="flex justify-between items-center p-4 lg:px-8 border-b">
         <Link href="/" className="flex items-center space-x-2">
-          <MessageCircle className="h-6 w-6 text-black" />
+          <Image src="/home/mystrymsgs.png" alt="MystryMsg" width={24} height={24} />
           <span className="text-xl font-bold text-black">MystryMsg</span>
         </Link>
       </nav>

@@ -8,6 +8,7 @@ export async function sendVerificationEmail(
     verifyCode:string
 ) : Promise<ApiResponse>{
     try {   
+        const appUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://mystrymsgs.vercel.app'
         await resend.emails.send({
             from: 'onboarding@resend.dev',
             to: email,

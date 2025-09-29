@@ -6,6 +6,7 @@ import { Switch } from "@/components/ui/switch";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { MessageCircle, Settings, Trash2, Copy, Share2, RefreshCw } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import axios from "axios";
@@ -171,7 +172,7 @@ export default function Dashboard() {
     <div className="min-h-screen bg-white text-black">
       <nav className="flex justify-between items-center p-4 lg:px-8 border-b">
         <Link href="/" className="flex items-center space-x-2">
-          <MessageCircle className="h-6 w-6 text-black" />
+          <Image src="/home/mystrymsgs.png" alt="MystryMsg" width={24} height={24} />
           <span className="text-xl font-bold text-black">MystryMsg</span>
         </Link>
         

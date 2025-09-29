@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { MessageCircle, Sparkles, Shield, Users, ArrowRight, Github, Mail, Linkedin, ChevronDown, ChevronUp, UserPlus, AtSign, Send, Inbox } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 import { useAuthRedirect } from "@/hooks/useAuthRedirect";
 
 export default function Home() {
@@ -60,7 +61,7 @@ export default function Home() {
     <div className="min-h-screen bg-white text-black">
       <nav className="flex justify-between items-center p-4 lg:px-8 border-b">
         <div className="flex items-center space-x-2">
-          <MessageCircle className="h-6 w-6 text-black" />
+          <Image src="/home/mystrymsgs.png" alt="MystryMsg" width={28} height={28} />
           <span className="text-xl font-bold text-black">MystryMsg</span>
         </div>
         <div className="flex items-center space-x-4">
@@ -287,7 +288,7 @@ export default function Home() {
         <div className="max-w-6xl mx-auto px-6 py-8">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="flex items-center space-x-2 mb-4 md:mb-0">
-              <MessageCircle className="h-6 w-6 text-black" />
+              <Image src="/home/mystrymsgs.png" alt="MystryMsg" width={24} height={24} />
               <span className="text-lg font-semibold text-black">MystryMsg</span>
             </div>
             <div className="flex items-center space-x-6 text-gray-500">

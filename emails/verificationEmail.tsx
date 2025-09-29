@@ -16,6 +16,7 @@ interface VerificationEmailProps {
 }
 
 export default function VerificationEmail({ username, otp }: VerificationEmailProps) {
+  const appUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://mystrymsgs.vercel.app';
   return (
     <Html>
       <Head>
@@ -54,14 +55,14 @@ export default function VerificationEmail({ username, otp }: VerificationEmailPr
             If you did not request this code, please ignore this email.
           </Text>
         </Row>
-        {/* <Row>
+        <Row>
           <Button
-            href={`http://localhost:3000/verify/${username}`}
-            style={{ color: '#61dafb' }}
+            href={`${appUrl}/verify/${encodeURIComponent(username)}`}
+            style={{ color: '#ffffff', background: '#000000', padding: '10px 16px', borderRadius: '12px' }}
           >
-            Verify here
+            Verify your account
           </Button>
-        </Row> */}
+        </Row>
       </Section>
     </Html>
   );
