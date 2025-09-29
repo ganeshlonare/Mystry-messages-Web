@@ -132,8 +132,8 @@ export default function VerifyAccount() {
         
         <div className="text-center mb-8 mt-12">
           <Link href="/" className="inline-flex items-center space-x-2 mb-6">
-            <Image src="/home/mystrymsgs.png" alt="MystryMsg" width={28} height={28} />
-            <span className="text-2xl font-bold text-black">MystryMsg</span>
+            <Image src="/home/mystrymsgs.png" alt="MysteryMsg" width={28} height={28} />
+            <span className="text-2xl font-bold text-black">MysteryMsg</span>
           </Link>
           <div className="inline-block mb-4">
             <Mail className="h-12 w-12 text-black mx-auto" />

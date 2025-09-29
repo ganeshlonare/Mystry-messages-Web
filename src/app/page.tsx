@@ -20,8 +20,8 @@ export default function Home() {
 
   const faqs = [
     {
-      question: "What is MystryMsg?",
-      answer: "MystryMsg is a platform that allows you to receive anonymous messages from friends, colleagues, or anyone who knows your unique link. It\'s perfect for getting honest feedback and authentic communication."
+      question: "What is MysteryMsg?",
+      answer: "MysteryMsg is a platform that allows you to receive anonymous messages from friends, colleagues, or anyone who knows your unique link. It\'s perfect for getting honest feedback and authentic communication."
     },
     {
       question: "How does anonymous messaging work?",
@@ -61,8 +61,8 @@ export default function Home() {
     <div className="min-h-screen bg-white text-black">
       <nav className="flex justify-between items-center p-4 lg:px-8 border-b">
         <div className="flex items-center space-x-2">
-          <Image src="/home/mystrymsgs.png" alt="MystryMsg" width={28} height={28} />
-          <span className="text-xl font-bold text-black">MystryMsg</span>
+          <Image src="/home/mystrymsgs.png" alt="MysteryMsg" width={28} height={28} />
+          <span className="text-xl font-bold text-black">MysteryMsg</span>
         </div>
         <div className="flex items-center space-x-4">
           <Link href="/docs">
@@ -288,8 +288,8 @@ export default function Home() {
         <div className="max-w-6xl mx-auto px-6 py-8">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="flex items-center space-x-2 mb-4 md:mb-0">
-              <Image src="/home/mystrymsgs.png" alt="MystryMsg" width={24} height={24} />
-              <span className="text-lg font-semibold text-black">MystryMsg</span>
+              <Image src="/home/mystrymsgs.png" alt="MysteryMsg" width={24} height={24} />
+              <span className="text-lg font-semibold text-black">MysteryMsg</span>
             </div>
             <div className="flex items-center space-x-6 text-gray-500">
               <a href="https://github.com/ganeshlonare" target="_blank" rel="noopener noreferrer" className="hover:text-black">GitHub</a>
@@ -297,7 +297,7 @@ export default function Home() {
             </div>
           </div>
           <div className="mt-6 pt-6 border-t text-center text-gray-500">
-            <p>&copy; 2024 MystryMsg. Built by Ganesh Lonare to showcase full-stack development skills.</p>
+            <p>&copy; 2025 MysteryMsg. Built by Ganesh Lonare to showcase full-stack development skills.</p>
           </div>
         </div>
       </footer>

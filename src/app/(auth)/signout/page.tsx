@@ -61,8 +61,8 @@ export default function SignOut() {
       {/* Navigation */}
       <nav className="flex justify-between items-center p-4 lg:px-8 border-b">
         <Link href="/" className="flex items-center space-x-2">
-          <Image src="/home/mystrymsgs.png" alt="MystryMsg" width={24} height={24} />
-          <span className="text-xl font-bold text-black">MystryMsg</span>
+          <Image src="/home/mystrymsgs.png" alt="MysteryMsg" width={24} height={24} />
+          <span className="text-xl font-bold text-black">MysteryMsg</span>
         </Link>
       </nav>
 

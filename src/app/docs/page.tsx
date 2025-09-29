@@ -159,8 +159,8 @@ export default function Documentation() {
                 <span className="text-sm">Back to Home</span>
               </Link>
               <div className="flex items-center space-x-2">
-                <Image src="/home/mystrymsgs.png" alt="MystryMsg" width={24} height={24} />
-                <span className="text-xl font-bold text-black">MystryMsg</span>
+                <Image src="/home/mystrymsgs.png" alt="MysteryMsg" width={24} height={24} />
+                <span className="text-xl font-bold text-black">MysteryMsg</span>
               </div>
             </div>
             <div className="flex items-center space-x-2">
@@ -176,7 +176,7 @@ export default function Documentation() {
         <div className="text-center mb-16">
           <h1 className="text-5xl font-bold mb-6">Technical Documentation</h1>
           <p className="text-xl text-gray-700 max-w-3xl mx-auto">
-            Comprehensive overview of MystryMsg&apos;s architecture, features, and implementation details. 
+            Comprehensive overview of MysteryMsg&apos;s architecture, features, and implementation details. 
             Built with modern web technologies to showcase full-stack development expertise.
           </p>
         </div>

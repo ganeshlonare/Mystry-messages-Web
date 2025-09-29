@@ -11,11 +11,11 @@ const baseUrl = process.env.NEXT_PUBLIC_APP_URL || "https://mystrymsg.vercel.app
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
   title: {
-    default: "MystryMsg - Anonymous Messages",
-    template: "%s | MystryMsg",
+    default: "MysteryMsg - Anonymous Messages",
+    template: "%s | MysteryMsg",
   },
   description: "Send and receive anonymous messages with AI-powered suggestions",
-  applicationName: "MystryMsg",
+  applicationName: "MysteryMsg",
   keywords: [
     "anonymous messages",
     "feedback",
@@ -26,29 +26,29 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "Ganesh Lonare" }],
   creator: "Ganesh Lonare",
-  publisher: "MystryMsg",
+  publisher: "MysteryMsg",
   alternates: {
     canonical: "/",
   },
   openGraph: {
     type: "website",
     url: baseUrl,
-    title: "MystryMsg - Anonymous Messages",
+    title: "MysteryMsg - Anonymous Messages",
     description: "Send and receive anonymous messages with AI-powered suggestions",
-    siteName: "MystryMsg",
+    siteName: "MysteryMsg",
     images: [
       {
         url: "/home/image.png",
         width: 1200,
         height: 630,
-        alt: "MystryMsg - Anonymous Messages",
+        alt: "MysteryMsg - Anonymous Messages",
       },
     ],
     locale: "en_US",
   },
   twitter: {
     card: "summary_large_image",
-    title: "MystryMsg - Anonymous Messages",
+    title: "MysteryMsg - Anonymous Messages",
     description: "Send and receive anonymous messages with AI-powered suggestions",
     images: ["/home/image.png"],
   },

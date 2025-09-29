@@ -113,7 +113,7 @@ export default function SignIn() {
           <Link href="/" className="inline-flex items-center space-x-2 mb-6">
             <MessageCircle className="h-8 w-8 text-black" />
             <span className="text-2xl font-bold text-black">
-              MystryMsg
+              MysteryMsg
             </span>
           </Link>
           <div className="inline-block mb-4">
@@ -206,7 +206,7 @@ export default function SignIn() {
             Quick Start
           </h3>
           <p className="text-sm text-gray-600 mb-3">
-            New to MystryMsg? Create an account to start receiving anonymous messages from friends and followers.
+            New to MysteryMsg? Create an account to start receiving anonymous messages from friends and followers.
           </p>
           <Link href="/signup">
             <Button variant="outline" className="w-full border-gray-300 text-black hover:bg-gray-200">

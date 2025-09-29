@@ -77,7 +77,7 @@ export default function SignUp() {
         <div className="text-center mb-8 mt-12">
           <Link href="/" className="inline-flex items-center space-x-2 mb-6">
             <MessageCircle className="h-8 w-8 text-black" />
-            <span className="text-2xl font-bold text-black">MystryMsg</span>
+            <span className="text-2xl font-bold text-black">MysteryMsg</span>
           </Link>
           <div className="inline-block mb-4">
             <Sparkles className="h-12 w-12 text-black mx-auto" />
