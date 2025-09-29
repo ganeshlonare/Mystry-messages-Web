@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { MessageCircle, Sparkles, Shield, Users, ArrowRight, Github, Mail, Linkedin, ChevronDown, ChevronUp, UserPlus, AtSign, Send, Inbox } from "lucide-react";
+import { MessageCircle, Sparkles, Shield, Users, ArrowRight, Github, Mail, Linkedin, ChevronDown, ChevronUp, UserPlus, AtSign, Send, Inbox, Menu, X } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { useAuthRedirect } from "@/hooks/useAuthRedirect";
@@ -10,6 +10,7 @@ import { useAuthRedirect } from "@/hooks/useAuthRedirect";
 export default function Home() {
   const [ready, setReady] = useState(true);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
+  const [mobileNavOpen, setMobileNavOpen] = useState(false);
   
   // Redirect if already authenticated
   const { status } = useAuthRedirect();
@@ -64,7 +65,7 @@ export default function Home() {
           <Image src="/home/mystrymsgs.png" alt="MysteryMsg" width={28} height={28} />
           <span className="text-xl font-bold text-black">MysteryMsg</span>
         </div>
-        <div className="flex items-center space-x-4">
+        <div className="hidden md:flex items-center space-x-4">
           <Link href="/docs">
             <Button variant="outline" className="border-gray-300 text-black hover:bg-gray-100">
               Documentation
@@ -77,7 +78,28 @@ export default function Home() {
             <Button className="bg-black hover:bg-gray-800 text-white px-6">Get Started</Button>
           </Link>
         </div>
+        <button
+          aria-label="Toggle menu"
+          onClick={() => setMobileNavOpen(!mobileNavOpen)}
+          className="md:hidden p-2 rounded-lg border border-gray-200 text-black"
+        >
+          {mobileNavOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+        </button>
       </nav>
+
+      {mobileNavOpen && (
+        <div className="md:hidden border-b px-4 pb-4 space-y-2">
+          <Link href="/docs">
+            <Button variant="outline" className="w-full justify-center border-gray-300 text-black hover:bg-gray-100">Documentation</Button>
+          </Link>
+          <Link href="/signin">
+            <Button variant="outline" className="w-full justify-center border-gray-300 text-black hover:bg-gray-100">Sign In</Button>
+          </Link>
+          <Link href="/signup">
+            <Button className="w-full justify-center bg-black hover:bg-gray-800 text-white">Get Started</Button>
+          </Link>
+        </div>
+      )}
 
       {/* Social Icons - Fixed Left Side */}
       <div className="fixed left-10 top-1/2 transform -translate-y-1/2 z-10 hidden lg:flex flex-col space-y-6">

@@ -127,7 +127,7 @@ export default function SignIn() {
             <p className="text-gray-600">Sign in to your mystery messaging account</p>
           </div>
 
-          <div className="bg-gray-100 rounded-2xl p-8 shadow-lg">
+          <div className="bg-gray-100 rounded-2xl p-6 md:p-8 shadow-lg">
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="space-y-2">
                 <Label htmlFor="identifier" className="text-black flex items-center space-x-2">

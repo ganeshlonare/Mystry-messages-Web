@@ -97,7 +97,7 @@ export default function SignUp() {
             <p className="text-gray-600">Join the mystery messaging revolution</p>
           </div>
 
-          <div className="bg-gray-100 rounded-2xl p-8 shadow-lg">
+          <div className="bg-gray-100 rounded-2xl p-6 md:p-8 shadow-lg">
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
               <div className="space-y-2">
                 <Label htmlFor="username" className="text-black flex items-center space-x-2">

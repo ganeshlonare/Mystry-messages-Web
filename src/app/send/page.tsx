@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { MessageCircle, Send, Sparkles, User, MessageSquare, Wand2, RefreshCw } from "lucide-react";
+import { MessageCircle, Send, Sparkles, User, MessageSquare, Wand2, RefreshCw, Menu, X } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { useSearchParams } from "next/navigation";
@@ -22,6 +22,7 @@ function SendMessageInner() {
   const [isGenerating, setIsGenerating] = useState(false);
   const [aiSuggestion, setAiSuggestion] = useState("");
   const [suggestionPrompt, setSuggestionPrompt] = useState("");
+  const [mobileNavOpen, setMobileNavOpen] = useState(false);
   const searchParams = useSearchParams();
   const { toast } = useToast();
   const { data: session, status } = useSession();
@@ -106,7 +107,7 @@ function SendMessageInner() {
           <span className="text-xl font-bold text-black">MysteryMsg</span>
         </Link>
         
-        <div className="flex items-center space-x-4">
+        <div className="hidden md:flex items-center space-x-4">
           {status === "authenticated" ? (
             // Show user info and dashboard link when logged in
             <>
@@ -140,7 +141,49 @@ function SendMessageInner() {
             </>
           )}
         </div>
+        <button
+          aria-label="Toggle menu"
+          onClick={() => setMobileNavOpen(!mobileNavOpen)}
+          className="md:hidden p-2 rounded-lg border border-gray-200 text-black"
+        >
+          {mobileNavOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+        </button>
       </nav>
+
+      {mobileNavOpen && (
+        <div className="md:hidden border-b px-4 pb-4 space-y-2">
+          {status === "authenticated" ? (
+            <>
+              <span className="block text-black">Hello, {session?.user?.username}</span>
+              <Link href="/dashboard">
+                <Button variant="outline" className="w-full justify-center border-gray-300 text-black hover:bg-gray-100">
+                  Dashboard
+                </Button>
+              </Link>
+              <Button
+                onClick={() => router.push('/signout')}
+                variant="outline"
+                className="w-full justify-center border-gray-300 text-black hover:bg-gray-100"
+              >
+                Sign Out
+              </Button>
+            </>
+          ) : (
+            <>
+              <Link href="/signin">
+                <Button variant="outline" className="w-full justify-center border-gray-300 text-black hover:bg-gray-100">
+                  Sign In
+                </Button>
+              </Link>
+              <Link href="/signup">
+                <Button className="w-full justify-center bg-black hover:bg-gray-800 text-white px-6">
+                  Get Started
+                </Button>
+              </Link>
+            </>
+          )}
+        </div>
+      )}
 
       <div className="max-w-4xl mx-auto px-6 py-12">
         <div className="space-y-8">

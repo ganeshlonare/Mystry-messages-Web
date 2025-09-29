@@ -20,10 +20,12 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
+import { Menu, X } from "lucide-react";
 
 export default function Documentation() {
   const [activeSection, setActiveSection] = useState<string | null>(null);
   const [copiedCode, setCopiedCode] = useState<string | null>(null);
+  const [mobileNavOpen, setMobileNavOpen] = useState(false);
 
   const toggleSection = (section: string) => {
     setActiveSection(activeSection === section ? null : section);
@@ -163,13 +165,29 @@ export default function Documentation() {
                 <span className="text-xl font-bold text-black">MysteryMsg</span>
               </div>
             </div>
-            <div className="flex items-center space-x-2">
+            <div className="hidden md:flex items-center space-x-2">
               <Code className="h-6 w-6 text-gray-600" />
               <span className="text-lg font-semibold text-gray-800">Documentation</span>
             </div>
+            <button
+              aria-label="Toggle menu"
+              className="md:hidden p-2 rounded-lg border border-gray-200"
+              onClick={() => setMobileNavOpen(!mobileNavOpen)}
+            >
+              {mobileNavOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            </button>
           </div>
         </div>
       </div>
+
+      {mobileNavOpen && (
+        <div className="md:hidden border-b px-6 py-3">
+          <div className="flex items-center space-x-2">
+            <Code className="h-5 w-5 text-gray-600" />
+            <span className="text-base font-semibold text-gray-800">Documentation</span>
+          </div>
+        </div>
+      )}
 
       <div className="max-w-6xl mx-auto px-6 py-12">
         {/* Hero Section */}
@@ -467,3 +485,4 @@ export default function Documentation() {
     </div>
   );
 }
+
