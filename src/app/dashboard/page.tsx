@@ -4,7 +4,7 @@ import { useState, useEffect, useCallback } from "react";
 import { Button } from "@/components/ui/button";
 import { Switch } from "@/components/ui/switch";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { MessageCircle, Settings, Trash2, Copy, Share2, RefreshCw } from "lucide-react";
+import { MessageCircle, Trash2, Copy, Share2, RefreshCw, Settings } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { useSession } from "next-auth/react";
@@ -21,18 +21,24 @@ interface Message {
 }
 
 export default function Dashboard() {
+  // State for mobile menu
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  
+  // Authentication and routing
   const { data: session, status } = useSession();
   const router = useRouter();
   const { toast } = useToast();
   
-  // Protect this route - redirect if not authenticated
-  const { session: protectedSession, status: protectedStatus } = useProtectedRoute();
-  
-  const [messages, setMessages] = useState<Message[]>([]);
-  const [isAcceptingMessages, setIsAcceptingMessages] = useState(true);
+  // Component state
   const [isLoading, setIsLoading] = useState(true);
   const [isRefreshing, setIsRefreshing] = useState(false);
+  const [messages, setMessages] = useState<Message[]>([]);
+  const [isAcceptingMessages, setIsAcceptingMessages] = useState(true);
+  
+  // Protected route handling
+  const { status: protectedStatus, session: protectedSession } = useProtectedRoute();
 
+  // Fetch messages from the API
   const fetchMessages = useCallback(async () => {
     try {
       console.log('[DASHBOARD] Fetching messages...');
@@ -170,29 +176,77 @@ export default function Dashboard() {
 
   return (
     <div className="min-h-screen bg-white text-black">
-      <nav className="flex justify-between items-center p-4 lg:px-8 border-b">
-        <Link href="/" className="flex items-center space-x-2">
-          <Image src="/home/mystrymsgs.png" alt="MysteryMsg" width={24} height={24} />
-          <span className="text-xl font-bold text-black">MysteryMsg</span>
-        </Link>
-        
-        <div className="flex items-center space-x-4">
-          <span className="text-black">Welcome, {session?.user?.username}</span>
-          <Link href="/send">
+      <nav className="relative">
+        <div className="flex justify-between items-center p-4 lg:px-8 border-b">
+          <Link href="/" className="flex items-center space-x-2">
+            <Image src="/home/mystrymsgs.png" alt="MysteryMsg" width={24} height={24} />
+            <span className="text-xl font-bold text-black">MysteryMsg</span>
+          </Link>
+          
+          {/* Mobile menu button */}
+          <button 
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            className="md:hidden p-2 rounded-md text-gray-700 hover:bg-gray-100 focus:outline-none"
+            aria-label="Toggle menu"
+          >
+            {isMenuOpen ? (
+              <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            ) : (
+              <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16m-7 6h7" />
+              </svg>
+            )}
+          </button>
+
+          {/* Desktop menu */}
+          <div className="hidden md:flex items-center space-x-4">
+            <span className="text-black">Welcome, {session?.user?.username}</span>
+            <Link href="/send">
+              <Button
+                variant="outline"
+                className="border-gray-300 text-black hover:bg-gray-100"
+              >
+                Send Message
+              </Button>
+            </Link>
             <Button
+              onClick={() => router.push('/signout')}
               variant="outline"
               className="border-gray-300 text-black hover:bg-gray-100"
             >
-              Send Message
+              Sign Out
             </Button>
-          </Link>
-          <Button
-            onClick={() => router.push('/signout')}
-            variant="outline"
-            className="border-gray-300 text-black hover:bg-gray-100"
-          >
-            Sign Out
-          </Button>
+          </div>
+        </div>
+
+        {/* Mobile menu */}
+        <div className={`md:hidden ${isMenuOpen ? 'block' : 'hidden'} bg-white border-b`}>
+          <div className="px-4 py-3 space-y-3">
+            <div className="px-2 py-1 text-sm font-medium text-gray-700">
+              Welcome, {session?.user?.username}
+            </div>
+            <Link href="/send">
+              <Button
+                variant="outline"
+                className="w-full justify-start border-gray-300 text-black hover:bg-gray-100"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Send Message
+              </Button>
+            </Link>
+            <Button
+              onClick={() => {
+                setIsMenuOpen(false);
+                router.push('/signout');
+              }}
+              variant="outline"
+              className="w-full justify-start border-gray-300 text-black hover:bg-gray-100"
+            >
+              Sign Out
+            </Button>
+          </div>
         </div>
       </nav>
 
