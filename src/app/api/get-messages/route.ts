@@ -17,24 +17,42 @@ export async function GET(request: Request) {
       { status: 401 }
     );
   }
+
   const userId = new mongoose.Types.ObjectId(_user._id);
   try {
-    const user = await UserModel.aggregate([
-      { $match: { _id: userId } },
-      { $unwind: '$messages' },
-      { $sort: { 'messages.createdAt': -1 } },
-      { $group: { _id: '$_id', messages: { $push: '$messages' } } },
-    ]).exec();
-
-    if (!user || user.length === 0) {
+    console.log(`[GET-MESSAGES] Fetching messages for user: ${userId}`);
+    
+    // First check if user exists
+    const userExists = await UserModel.findById(userId);
+    if (!userExists) {
+      console.log(`[GET-MESSAGES] User not found: ${userId}`);
       return Response.json(
         { message: 'User not found', success: false },
         { status: 404 }
       );
     }
 
+    console.log(`[GET-MESSAGES] User found: ${userExists.username}, messages count: ${userExists.messages?.length || 0}`);
+
+    // Get user with messages, handling empty messages array properly
+    const user = await UserModel.findById(userId).select('messages username');
+    
+    // Sort messages by createdAt in descending order (newest first)
+    const messages = user?.messages || [];
+    messages.sort((a: any, b: any) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+
+    console.log(`[GET-MESSAGES] Returning ${messages.length} messages for user: ${user?.username}`);
+
     return Response.json(
-      { messages: user[0].messages },
+      { 
+        messages: messages,
+        success: true,
+        debug: {
+          userId: userId.toString(),
+          username: user?.username,
+          messageCount: messages.length
+        }
+      },
       {
         status: 200,
       }

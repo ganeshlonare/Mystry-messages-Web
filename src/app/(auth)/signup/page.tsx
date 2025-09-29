@@ -4,16 +4,17 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { MessageCircle, Eye, EyeOff, Mail, Lock, Sparkles, ArrowLeft } from "lucide-react";
+import { MessageCircle, Eye, EyeOff, Mail, User, Lock, Sparkles, ArrowLeft } from "lucide-react";
 import Link from "next/link";
-import { signIn, getSession } from "next-auth/react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { signUpSchema } from "@/schemas/signUpSchema";
+import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useToast } from "@/components/ui/use-toast";
 import { useAuthRedirect } from "@/hooks/useAuthRedirect";
 
-export default function SignIn() {
-  const [identifier, setIdentifier] = useState("");
-  const [password, setPassword] = useState("");
+export default function SignUp() {
   const [showPassword, setShowPassword] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const router = useRouter();
@@ -21,6 +22,14 @@ export default function SignIn() {
   
   // Redirect if already authenticated
   const { status } = useAuthRedirect();
+  
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: zodResolver(signUpSchema),
+  });
   
   // Show loading while checking authentication
   if (status === 'loading') {
@@ -34,66 +43,23 @@ export default function SignIn() {
     );
   }
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!identifier.trim() || !password.trim()) {
-      toast({
-        title: "Missing Information",
-        description: "Please enter both email/username and password",
-        variant: "destructive",
-      });
-      return;
-    }
-
+  const onSubmit = async (data: any) => {
     setIsSubmitting(true);
     try {
-      const result = await signIn('credentials', {
-        identifier: identifier.trim(),
-        password: password.trim(),
-        redirect: false,
+      const response = await axios.post('/api/sign-up', data);
+      toast({
+        title: "Success",
+        description: response.data.message,
       });
-
-      if (result?.error) {
-        toast({
-          title: "Sign In Failed",
-          description: "Invalid credentials. Please check your email/username and password.",
-          variant: "destructive",
-        });
-      } else {
-        toast({
-          title: "Welcome back!",
-          description: "You have been signed in successfully.",
-        });
-        router.replace('/dashboard');
-      }
+      router.replace(`/verify/${data.username}`);
     } catch (error: any) {
       toast({
-        title: "Sign In Failed",
-        description: "An error occurred during sign in. Please try again.",
+        title: "Sign Up Failed",
+        description: error.response?.data?.message || "An error occurred",
         variant: "destructive",
       });
     } finally {
       setIsSubmitting(false);
-    }
-  };
-
-  const containerVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.6,
-        staggerChildren: 0.1
-      }
-    }
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
     }
   };
 
@@ -108,43 +74,58 @@ export default function SignIn() {
           </Link>
         </div>
         
-        {/* Header */}
         <div className="text-center mb-8 mt-12">
           <Link href="/" className="inline-flex items-center space-x-2 mb-6">
             <MessageCircle className="h-8 w-8 text-black" />
-            <span className="text-2xl font-bold text-black">
-              MystryMsg
-            </span>
+            <span className="text-2xl font-bold text-black">MystryMsg</span>
           </Link>
           <div className="inline-block mb-4">
             <Sparkles className="h-12 w-12 text-black mx-auto" />
           </div>
-          <h1 className="text-3xl font-bold text-black mb-2">Welcome Back</h1>
-          <p className="text-gray-600">Sign in to your mystery messaging account</p>
+          <h1 className="text-3xl font-bold text-black mb-2">Create Account</h1>
+          <p className="text-gray-600">Join the mystery messaging revolution</p>
         </div>
 
-        {/* Form */}
         <div className="bg-gray-100 rounded-2xl p-8 shadow-lg">
-          <form onSubmit={handleSubmit} className="space-y-6">
-            {/* Email/Username Field */}
+          <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
             <div className="space-y-2">
-              <Label htmlFor="identifier" className="text-black flex items-center space-x-2">
-                <Mail className="h-4 w-4" />
-                <span>Email or Username</span>
+              <Label htmlFor="username" className="text-black flex items-center space-x-2">
+                <User className="h-4 w-4" />
+                <span>Username</span>
               </Label>
               <div className="relative">
                 <Input
-                  id="identifier"
+                  id="username"
                   type="text"
-                  placeholder="Enter your email or username"
-                  value={identifier}
-                  onChange={(e) => setIdentifier(e.target.value)}
+                  placeholder="Enter your username"
+                  {...register("username")}
                   className="bg-white border-gray-300 text-black placeholder:text-gray-500 focus:border-black focus:ring-black"
                 />
               </div>
+              {errors.username && (
+                <p className="text-red-600 text-sm">{errors.username.message as string}</p>
+              )}
             </div>
 
-            {/* Password Field */}
+            <div className="space-y-2">
+              <Label htmlFor="email" className="text-black flex items-center space-x-2">
+                <Mail className="h-4 w-4" />
+                <span>Email</span>
+              </Label>
+              <div className="relative">
+                <Input
+                  id="email"
+                  type="email"
+                  placeholder="Enter your email"
+                  {...register("email")}
+                  className="bg-white border-gray-300 text-black placeholder:text-gray-500 focus:border-black focus:ring-black"
+                />
+              </div>
+              {errors.email && (
+                <p className="text-red-600 text-sm">{errors.email.message as string}</p>
+              )}
+            </div>
+
             <div className="space-y-2">
               <Label htmlFor="password" className="text-black flex items-center space-x-2">
                 <Lock className="h-4 w-4" />
@@ -155,8 +136,7 @@ export default function SignIn() {
                   id="password"
                   type={showPassword ? "text" : "password"}
                   placeholder="Enter your password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
+                  {...register("password")}
                   className="bg-white border-gray-300 text-black placeholder:text-gray-500 focus:border-black focus:ring-black pr-10"
                 />
                 <button
@@ -167,53 +147,33 @@ export default function SignIn() {
                   {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
                 </button>
               </div>
+              {errors.password && (
+                <p className="text-red-600 text-sm">{errors.password.message as string}</p>
+              )}
             </div>
 
-            {/* Submit Button */}
             <div>
               <Button
                 type="submit"
                 disabled={isSubmitting}
                 className="w-full bg-black hover:bg-gray-800 text-white py-3 text-lg rounded-xl"
               >
-                {isSubmitting ? "Signing in..." : "Sign In"}
+                {isSubmitting ? "Creating..." : "Create Account"}
               </Button>
             </div>
           </form>
 
-          {/* Sign Up Link */}
           <div className="mt-6 text-center">
             <p className="text-gray-600">
-              Don&apos;t have an account?{" "}
-              <Link href="/signup" className="text-black hover:text-gray-800 font-semibold">
-                Sign Up
+              Already have an account?{" "}
+              <Link href="/signin" className="text-black hover:text-gray-800 font-semibold">
+                Sign In
               </Link>
             </p>
           </div>
-
-          {/* Forgot Password */}
-          <div className="mt-4 text-center">
-            <Link href="/forgot-password" className="text-sm text-gray-500 hover:text-black">
-              Forgot your password?
-            </Link>
-          </div>
         </div>
 
-        {/* Demo Account */}
-        {/* <div className="mt-8 bg-gray-100 rounded-xl p-4 border border-gray-200">
-          <h3 className="text-black font-semibold mb-2 flex items-center">
-            <Sparkles className="h-4 w-4 mr-2 text-black" />
-            Quick Start
-          </h3>
-          <p className="text-sm text-gray-600 mb-3">
-            New to MystryMsg? Create an account to start receiving anonymous messages from friends and followers.
-          </p>
-          <Link href="/signup">
-            <Button variant="outline" className="w-full border-gray-300 text-black hover:bg-gray-200">
-              Create New Account
-            </Button>
-          </Link>
-        </div> */}
+       
       </div>
     </div>
   );
