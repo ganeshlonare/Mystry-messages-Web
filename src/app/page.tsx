@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { MessageCircle, Sparkles, Shield, Users, ArrowRight, Github, Mail, Linkedin, ChevronDown, ChevronUp } from "lucide-react";
+import { MessageCircle, Sparkles, Shield, Users, ArrowRight, Github, Mail, Linkedin, ChevronDown, ChevronUp, UserPlus, AtSign, Send, Inbox } from "lucide-react";
 import Link from "next/link";
 import { useAuthRedirect } from "@/hooks/useAuthRedirect";
 
@@ -20,7 +20,7 @@ export default function Home() {
   const faqs = [
     {
       question: "What is MystryMsg?",
-      answer: "MystryMsg is a platform that allows you to receive anonymous messages from friends, colleagues, or anyone who knows your unique link. It's perfect for getting honest feedback and authentic communication."
+      answer: "MystryMsg is a platform that allows you to receive anonymous messages from friends, colleagues, or anyone who knows your unique link. It\'s perfect for getting honest feedback and authentic communication."
     },
     {
       question: "How does anonymous messaging work?",
@@ -28,7 +28,7 @@ export default function Home() {
     },
     {
       question: "Is it really anonymous?",
-      answer: "Yes! Senders don't need to create accounts or provide any personal information. Their identity is completely protected, ensuring honest and authentic communication."
+      answer: "Yes! Senders don\'t need to create accounts or provide any personal information. Their identity is completely protected, ensuring honest and authentic communication."
     },
     {
       question: "Can I reply to anonymous messages?",
@@ -40,7 +40,7 @@ export default function Home() {
     },
     {
       question: "Can I control who sends me messages?",
-      answer: "Yes! You can enable or disable message receiving at any time from your dashboard. You also have the option to delete any messages you don't want to keep."
+      answer: "Yes! You can enable or disable message receiving at any time from your dashboard. You also have the option to delete any messages you don\'t want to keep."
     }
   ];
   
@@ -149,6 +149,48 @@ export default function Home() {
             </div>
           </div>
 
+          {/* How It Works */}
+          <div className="max-w-5xl mx-auto mt-20">
+            <h2 className="text-4xl font-bold text-center mb-12">How It Works</h2>
+            <div className="grid md:grid-cols-5 gap-4">
+              <div className="bg-gray-50 rounded-2xl p-5 border border-gray-200 text-center">
+                <div className="w-12 h-12 mx-auto mb-3 rounded-xl bg-white border border-gray-200 flex items-center justify-center">
+                  <UserPlus className="h-6 w-6 text-black" />
+                </div>
+                <h3 className="font-semibold text-black mb-1">Register</h3>
+                <p className="text-sm text-gray-600">Create your free account</p>
+              </div>
+              <div className="bg-gray-50 rounded-2xl p-5 border border-gray-200 text-center">
+                <div className="w-12 h-12 mx-auto mb-3 rounded-xl bg-white border border-gray-200 flex items-center justify-center">
+                  <AtSign className="h-6 w-6 text-black" />
+                </div>
+                <h3 className="font-semibold text-black mb-1">Unique Username</h3>
+                <p className="text-sm text-gray-600">Claim your unique handle</p>
+              </div>
+              <div className="bg-gray-50 rounded-2xl p-5 border border-gray-200 text-center">
+                <div className="w-12 h-12 mx-auto mb-3 rounded-xl bg-white border border-gray-200 flex items-center justify-center">
+                  <Send className="h-6 w-6 text-black" />
+                </div>
+                <h3 className="font-semibold text-black mb-1">Send Message</h3>
+                <p className="text-sm text-gray-600">Share your link, receive notes</p>
+              </div>
+              <div className="bg-gray-50 rounded-2xl p-5 border border-gray-200 text-center">
+                <div className="w-12 h-12 mx-auto mb-3 rounded-xl bg-white border border-gray-200 flex items-center justify-center">
+                  <Inbox className="h-6 w-6 text-black" />
+                </div>
+                <h3 className="font-semibold text-black mb-1">Receive</h3>
+                <p className="text-sm text-gray-600">Messages appear in dashboard</p>
+              </div>
+              <div className="bg-gray-50 rounded-2xl p-5 border border-gray-200 text-center">
+                <div className="w-12 h-12 mx-auto mb-3 rounded-xl bg-white border border-gray-200 flex items-center justify-center">
+                  <Shield className="h-6 w-6 text-black" />
+                </div>
+                <h3 className="font-semibold text-black mb-1">No Credentials</h3>
+                <p className="text-sm text-gray-600">Sender identity never shared</p>
+              </div>
+            </div>
+          </div>
+
           {/* FAQ Section */}
           <div className="max-w-4xl mx-auto mt-20">
             <h2 className="text-4xl font-bold text-center mb-12">Frequently Asked Questions</h2>
@@ -182,7 +224,7 @@ export default function Home() {
               <h2 className="text-3xl font-bold text-black mb-4">👋 Hello Recruiters!</h2>
               <p className="text-lg text-gray-700 max-w-2xl mx-auto">
                 This project showcases my full-stack development skills using Next.js, TypeScript, MongoDB, NextAuth, and modern UI/UX practices. 
-                I'm passionate about creating user-centric applications with clean code and scalable architecture.
+                I&apos;m passionate about creating user-centric applications with clean code and scalable architecture.
               </p>
             </div>
             

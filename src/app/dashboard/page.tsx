@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { Button } from "@/components/ui/button";
 import { Switch } from "@/components/ui/switch";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -32,27 +32,7 @@ export default function Dashboard() {
   const [isLoading, setIsLoading] = useState(true);
   const [isRefreshing, setIsRefreshing] = useState(false);
 
-  useEffect(() => {
-    if (protectedStatus === "loading") return;
-    if (!protectedSession) return; // Will be redirected by useProtectedRoute
-    
-    fetchMessages();
-    fetchAcceptingStatus();
-  }, [protectedSession, protectedStatus]);
-  
-  // Show loading while checking authentication
-  if (protectedStatus === 'loading') {
-    return (
-      <div className="min-h-screen bg-white flex items-center justify-center">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-black mx-auto mb-4"></div>
-          <p className="text-gray-600">Loading...</p>
-        </div>
-      </div>
-    );
-  }
-
-  const fetchMessages = async () => {
+  const fetchMessages = useCallback(async () => {
     try {
       console.log('[DASHBOARD] Fetching messages...');
       const response = await axios.get('/api/get-messages');
@@ -78,16 +58,38 @@ export default function Dashboard() {
     } finally {
       setIsLoading(false);
     }
-  };
+  }, [toast]);
 
-  const fetchAcceptingStatus = async () => {
+  const fetchAcceptingStatus = useCallback(async () => {
     try {
       const response = await axios.get('/api/accept-messages');
       setIsAcceptingMessages(response.data.isAcceptingMessages);
     } catch (error) {
       console.error("Failed to fetch accepting status");
     }
-  };
+  }, []);
+
+  useEffect(() => {
+    if (protectedStatus === "loading") return;
+    if (!protectedSession) return; // Will be redirected by useProtectedRoute
+    
+    fetchMessages();
+    fetchAcceptingStatus();
+  }, [protectedSession, protectedStatus, fetchMessages, fetchAcceptingStatus]);
+  
+  // Show loading while checking authentication
+  if (protectedStatus === 'loading') {
+    return (
+      <div className="min-h-screen bg-white flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-black mx-auto mb-4"></div>
+          <p className="text-gray-600">Loading...</p>
+        </div>
+      </div>
+    );
+  }
+
+  
 
   const handleToggleAcceptingMessages = async () => {
     try {

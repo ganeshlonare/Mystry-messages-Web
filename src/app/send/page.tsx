@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -14,7 +14,7 @@ import axios from "axios";
 import { useToast } from "@/components/ui/use-toast";
 import MarkdownRenderer from "@/markdown/MarkdownRenderer";
 
-export default function SendMessage() {
+function SendMessageInner() {
   const [username, setUsername] = useState("");
   const [message, setMessage] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -258,5 +258,13 @@ export default function SendMessage() {
         </div>
       </div>
     </div>
+  );
+}
+
+export default function SendMessage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-white text-black flex items-center justify-center">Loading...</div>}>
+      <SendMessageInner />
+    </Suspense>
   );
 }

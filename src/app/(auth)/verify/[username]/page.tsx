@@ -143,7 +143,7 @@ export default function VerifyAccount() {
           <p className="text-gray-700">
             {showPasswordInput 
               ? "Enter your password to complete the sign-in process." 
-              : "We've sent a verification code to your email address."
+              : "We\'ve sent a verification code to your email address."
             }
           </p>
           <p className="text-black font-semibold mt-2">Username: {username}</p>
@@ -211,7 +211,7 @@ export default function VerifyAccount() {
           </form>
 
           <div className="mt-6 text-center">
-            <p className="text-gray-700 mb-4">Didn't receive the code?</p>
+            <p className="text-gray-700 mb-4">Didn&apos;t receive the code?</p>
             <Button
               type="button"
               onClick={handleResendCode}
@@ -238,7 +238,7 @@ export default function VerifyAccount() {
           </h3>
           <ul className="text-sm text-gray-700 space-y-1 text-left">
             <li>• Check your inbox for the verification email</li>
-            <li>• Look in your spam/junk folder if you don't see it</li>
+            <li>• Look in your spam/junk folder if you don&apos;t see it</li>
             <li>• The code expires in 10 minutes</li>
             <li>• Contact support if you continue having issues</li>
           </ul>

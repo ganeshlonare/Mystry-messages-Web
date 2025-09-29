@@ -105,7 +105,7 @@ export default function SignOut() {
 
             <div className="mt-6 pt-4 border-t border-gray-200">
               <p className="text-xs text-gray-500">
-                You'll be redirected to the home page after signing out
+                You&apos;ll be redirected to the home page after signing out
               </p>
             </div>
           </div>

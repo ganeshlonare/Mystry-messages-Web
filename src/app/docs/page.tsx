@@ -90,7 +90,7 @@ export default function Documentation() {
     {
       method: "GET",
       endpoint: "/api/get-messages",
-      description: "Fetch user's anonymous messages",
+      description: "Fetch user\'s anonymous messages",
       features: ["Authentication required", "Pagination support", "Date sorting", "Privacy protection"]
     },
     {
@@ -175,7 +175,7 @@ export default function Documentation() {
         <div className="text-center mb-16">
           <h1 className="text-5xl font-bold mb-6">Technical Documentation</h1>
           <p className="text-xl text-gray-700 max-w-3xl mx-auto">
-            Comprehensive overview of MystryMsg's architecture, features, and implementation details. 
+            Comprehensive overview of MystryMsg&apos;s architecture, features, and implementation details. 
             Built with modern web technologies to showcase full-stack development expertise.
           </p>
         </div>
@@ -440,7 +440,7 @@ export default function Documentation() {
           <div className="text-center">
             <h2 className="text-3xl font-bold mb-4">Questions or Feedback?</h2>
             <p className="text-lg text-gray-700 mb-6">
-              I'd love to discuss this project and my development approach with you!
+              I&apos;d love to discuss this project and my development approach with you!
             </p>
             <div className="flex justify-center space-x-4">
               <a 
