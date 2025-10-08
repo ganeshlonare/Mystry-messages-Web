@@ -24,8 +24,8 @@ export const metadata: Metadata = {
     "NextAuth",
     "MongoDB",
   ],
-  authors: [{ name: "Om Lokhande" }],
-  creator: "Om Lokhande",
+  authors: [{ name: "Ganesh Lonare" }],
+  creator: "Ganesh Lonare",
   publisher: "MysteryMsg",
   alternates: {
     canonical: "/",

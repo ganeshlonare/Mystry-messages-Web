@@ -104,7 +104,7 @@ export default function Home() {
       {/* Social Icons - Fixed Left Side */}
       <div className="fixed left-10 top-1/2 transform -translate-y-1/2 z-10 hidden lg:flex flex-col space-y-6">
         <a 
-          href="https://github.com/omlokhande1234" 
+          href="https://github.com/ganeshlonare" 
           target="_blank" 
           rel="noopener noreferrer"
           className="p-3 bg-white border border-gray-200 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 group"
@@ -112,7 +112,7 @@ export default function Home() {
           <Github className="h-6 w-6 text-gray-700 group-hover:text-black transition-colors" />
         </a>
         <a 
-          href="https://www.linkedin.com/in/omlokhande2004/" 
+          href="https://www.linkedin.com/in/ganeshlonare/" 
           target="_blank" 
           rel="noopener noreferrer"
           className="p-3 bg-white border border-gray-200 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 group"
@@ -120,7 +120,7 @@ export default function Home() {
           <Linkedin className="h-6 w-6 text-gray-700 group-hover:text-blue-600 transition-colors" />
         </a>
         <a 
-          href="mailto:olokhande56@gmail.com"
+          href="mailto:ganeshlonare311@gmail.com"
           className="p-3 bg-white border border-gray-200 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 group"
         >
           <Mail className="h-6 w-6 text-gray-700 group-hover:text-red-500 transition-colors" />
@@ -253,18 +253,18 @@ export default function Home() {
             
             <div className="grid md:grid-cols-3 gap-6">
               <a 
-                href="mailto:olokhande56@gmail.com"
+                href="mailto:ganeshlonare311@gmail.com"
                 className="flex items-center justify-center space-x-3 bg-white rounded-xl p-4 border border-gray-200 hover:shadow-md transition-shadow group"
               >
                 <Mail className="h-6 w-6 text-blue-600 group-hover:scale-110 transition-transform" />
                 <div className="text-left">
                   <p className="font-semibold text-black">Email Me</p>
-                  <p className="text-sm text-gray-600">olokhande56@gmail.com</p>
+                  <p className="text-sm text-gray-600">ganeshlonare311@gmail.com</p>
                 </div>
               </a>
               
               <a 
-                href="https://github.com/omlokhande1234"
+                href="https://github.com/ganeshlonare"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center justify-center space-x-3 bg-white rounded-xl p-4 border border-gray-200 hover:shadow-md transition-shadow group"
@@ -277,7 +277,7 @@ export default function Home() {
               </a>
               
               <a 
-                href="https://www.linkedin.com/in/omlokhande2004/"
+                href="https://www.linkedin.com/in/ganeshlonare/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center justify-center space-x-3 bg-white rounded-xl p-4 border border-gray-200 hover:shadow-md transition-shadow group"
@@ -314,12 +314,12 @@ export default function Home() {
               <span className="text-lg font-semibold text-black">MysteryMsg</span>
             </div>
             <div className="flex items-center space-x-6 text-gray-500">
-              <a href="https://github.com/omlokhande1234" target="_blank" rel="noopener noreferrer" className="hover:text-black">GitHub</a>
-              <a href="https://www.linkedin.com/in/omlokhande2004/" target="_blank" rel="noopener noreferrer" className="hover:text-black">LinkedIn</a>
+              <a href="https://github.com/ganeshlonare" target="_blank" rel="noopener noreferrer" className="hover:text-black">GitHub</a>
+              <a href="https://www.linkedin.com/in/ganeshlonare/" target="_blank" rel="noopener noreferrer" className="hover:text-black">LinkedIn</a>
             </div>
           </div>
           <div className="mt-6 pt-6 border-t text-center text-gray-500">
-            <p>&copy; 2025 MysteryMsg. Built by Om Lokhande to showcase full-stack development skills.</p>
+            <p>&copy; 2025 MysteryMsg. Built by Ganesh Lonare to showcase full-stack development skills.</p>
           </div>
         </div>
       </footer>
