@@ -353,14 +353,14 @@ export default function Documentation() {
               <div className="flex justify-between items-center mb-4">
                 <h3 className="text-lg font-semibold">1. Clone Repository</h3>
                 <button
-                  onClick={() => copyToClipboard('git clone https://github.com/ganeshlonare/mystry-message.git', 'clone')}
+                  onClick={() => copyToClipboard('git clone https://github.com/apekshaBL/mystry-message.git', 'clone')}
                   className="flex items-center space-x-2 text-gray-300 hover:text-white"
                 >
                   {copiedCode === 'clone' ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
                   <span className="text-sm">{copiedCode === 'clone' ? 'Copied!' : 'Copy'}</span>
                 </button>
               </div>
-              <code className="text-green-400">git clone https://github.com/ganeshlonare/mystry-message.git</code>
+              <code className="text-green-400">git clone https://github.com/apekshaBL/mystry-message.git</code>
             </div>
 
             <div className="bg-gray-900 rounded-xl p-6 text-white">
@@ -463,14 +463,14 @@ export default function Documentation() {
             </p>
             <div className="flex justify-center space-x-4">
               <a 
-                href="mailto:ganeshlonare311@gmail.com"
+                href="mailto:apekshalokhande8600@gmail.com"
                 className="inline-flex items-center space-x-2 bg-black text-white px-6 py-3 rounded-xl hover:bg-gray-800 transition-colors"
               >
                 <span>Email Me</span>
                 <ExternalLink className="h-4 w-4" />
               </a>
               <a 
-                href="https://github.com/ganeshlonare"
+                href="https://github.com/apekshaBL"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center space-x-2 border border-gray-300 text-black px-6 py-3 rounded-xl hover:bg-gray-100 transition-colors"
